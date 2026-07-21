@@ -411,6 +411,8 @@ func profileJSON(alias string) string {
 }
 
 func jobJSON(alias string) string {
+	// shops テーブルのエイリアスを "s" と仮定して店舗の基本情報を埋め込みます。
+	// もし SQL 呼び出し側で shops が JOIN されていない場合は、shop_id に対応する shops の簡易オブジェクトをサブクエリで引っ張ります。
 	return `json_build_object(
   'id', ` + alias + `.id,
   'shop_id', ` + alias + `.shop_id,
@@ -428,7 +430,17 @@ func jobJSON(alias string) string {
     SELECT json_agg(` + mediaAssetJSON("ma") + ` ORDER BY ma.created_at DESC NULLS LAST)
     FROM media_assets ma
     WHERE ma.job_post_id = ` + alias + `.id
-  ), '[]'::json)
+  ), '[]'::json),
+  'shop', (
+    SELECT json_build_object(
+      'id', s.id,
+      'name', s.name,
+      'slug', s.slug
+    )
+    FROM shops s
+    WHERE s.id = ` + alias + `.shop_id
+    LIMIT 1
+  )
 )`
 }
 

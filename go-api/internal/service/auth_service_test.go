@@ -148,4 +148,42 @@ func TestSyncProfile(t *testing.T) {
 			t.Errorf("expected response, got %s", string(res))
 		}
 	})
+
+	t.Run("validation failure (empty email)", func(t *testing.T) {
+		mockRepo := &mockProfileRepo{}
+		svc := NewAuthService(mockTx, mockRepo, logger)
+
+		input := SyncProfileInput{
+			ID:          "user-id",
+			Email:       "", // validation failure expected
+			DisplayName: "Test User",
+		}
+
+		_, err := svc.SyncProfile(context.Background(), input)
+		if err == nil {
+			t.Fatal("expected validation error, got nil")
+		}
+		if err.Error() != "email is required" {
+			t.Errorf("expected 'email is required' error, got: %v", err)
+		}
+	})
+
+	t.Run("validation failure (empty id)", func(t *testing.T) {
+		mockRepo := &mockProfileRepo{}
+		svc := NewAuthService(mockTx, mockRepo, logger)
+
+		input := SyncProfileInput{
+			ID:          "", // validation failure expected
+			Email:       "test@example.com",
+			DisplayName: "Test User",
+		}
+
+		_, err := svc.SyncProfile(context.Background(), input)
+		if err == nil {
+			t.Fatal("expected validation error, got nil")
+		}
+		if err.Error() != "id is required" {
+			t.Errorf("expected 'id is required' error, got: %v", err)
+		}
+	})
 }

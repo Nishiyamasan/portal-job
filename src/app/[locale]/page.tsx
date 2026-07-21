@@ -46,12 +46,7 @@ export default async function Home({
   const tTags = await getTranslations({locale, namespace: 'Tags'});
   const jobs = await getJobs({limit: 12, random: true});
   const shops = await getShops({limit: 12, random: true});
-  const jobsWithShop = await Promise.all(
-    jobs.map(async (job) => ({
-      job,
-      shop: await getShopById(job.shop_id)
-    }))
-  );
+
   const structuredData = {
     '@context': 'https://schema.org',
     '@type': 'ItemList',
@@ -109,7 +104,7 @@ export default async function Home({
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
-            {jobsWithShop.map(({job, shop}) => (
+            {jobs.map((job) => (
               <Link
                 key={job.id}
                 href={`/jobs/${job.id}`}
@@ -125,13 +120,13 @@ export default async function Home({
                     />
                   ) : (
                     <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-brand-50 via-white to-amber-50/50 text-sm font-semibold text-gray-500">
-                      {shop?.name ?? 'portal-job'}
+                      {job.shop?.name ?? 'portal-job'}
                     </div>
                   )}
                 </div>
 
                 <div className="p-8 flex-1 flex flex-col">
-                  <p className="mb-3 text-sm font-semibold text-gray-500">{shop?.name ?? 'portal-job'}</p>
+                  <p className="mb-3 text-sm font-semibold text-gray-500">{job.shop?.name ?? 'portal-job'}</p>
                   <h3 className="mb-6 text-2xl font-black text-gray-900 transition-colors group-hover:text-brand-600">
                     {job.title}
                   </h3>

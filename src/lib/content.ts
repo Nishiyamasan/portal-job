@@ -28,6 +28,11 @@ export interface JobPost {
   location?: string;
   publishedAt?: string | null;
   media_assets?: MediaAsset[];
+  shop?: {
+    id: string;
+    name: string;
+    slug: string;
+  };
 }
 
 type ListOptions = {
@@ -72,6 +77,11 @@ interface RawJobPost {
   published_at?: string | null;
   publishedAt?: string | null;
   media_assets?: MediaAsset[];
+  shop?: {
+    id: string;
+    name: string;
+    slug: string;
+  } | null;
 }
 
 function normalizeShop(shop: RawShop): Shop {
@@ -105,6 +115,7 @@ function normalizeJob(job: RawJobPost): JobPost {
     location: job.location || undefined,
     publishedAt: job.published_at || job.publishedAt || null,
     media_assets: job.media_assets || [],
+    shop: job.shop || undefined,
   };
 }
 

@@ -56,12 +56,7 @@ export default async function JobsPage({
     {label: 'portal-job', href: '/'},
     {label: t('title')}
   ];
-  const jobsWithShop = await Promise.all(
-    visibleJobs.map(async (job) => ({
-      job,
-      shop: await getShopById(job.shop_id)
-    }))
-  );
+
   const structuredData = {
     '@context': 'https://schema.org',
     '@type': 'ItemList',
@@ -102,7 +97,7 @@ export default async function JobsPage({
         </div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {jobsWithShop.map(({job, shop}) => (
+          {visibleJobs.map((job) => (
             <Link key={job.id} href={`/jobs/${job.id}`} className="group bg-white rounded-xl overflow-hidden shadow-sm border hover:shadow-md transition-shadow">
               <div className="aspect-video bg-gray-100">
                 {getMediaAssetUrl(getPrimaryMediaAsset(job.media_assets, 'job_image'), 'f_auto,q_auto,c_fill,w_640,h_360') ? (
@@ -114,12 +109,12 @@ export default async function JobsPage({
                   />
                 ) : (
                   <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-brand-50 via-white to-amber-50/50 text-sm font-semibold text-gray-400">
-                    {shop?.name ?? 'portal-job'}
+                    {job.shop?.name ?? 'portal-job'}
                   </div>
                 )}
               </div>
               <div className="p-6">
-                <p className="mb-3 text-sm font-semibold text-gray-500">{shop?.name ?? 'portal-job'}</p>
+                <p className="mb-3 text-sm font-semibold text-gray-500">{job.shop?.name ?? 'portal-job'}</p>
                 <h3 className="text-2xl font-bold text-gray-900 mb-2 group-hover:text-brand-600 transition-colors">{job.title}</h3>
                 <div className="mb-4 flex flex-wrap gap-3 text-sm text-gray-500">
                   <span>{t('employmentType')}: {job.employmentType || '-'}</span>
