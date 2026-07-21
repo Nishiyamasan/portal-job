@@ -1,0 +1,26 @@
+# 依存関係（コンテナ内でインストールするため不要）
+node_modules
+**/node_modules
+__pycache__
+*.pyc
+
+# ビルド成果物（転送するとコンフリクトの元）
+.next
+out
+build
+dist
+
+# Git関連（これがあるだけで転送が重くなる）
+.git
+.gitignore
+
+# 開発用ファイル・ログ
+test.db
+dev_output.log
+doc/
+*.md
+
+# Docker設定自体（コンテナ内には不要）
+Dockerfile
+docker-compose*.yml
+.env*

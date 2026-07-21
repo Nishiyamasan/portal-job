@@ -1,0 +1,26 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appIDs": [
+          "TEAMID.com.portal-job.app"
+        ],
+        "components": [
+          {
+            "/": "/shop/*",
+            "comment": "Open shop detail pages in the portal-job iOS app."
+          },
+          {
+            "/": "/ja/shop/*",
+            "comment": "Open Japanese shop detail pages in the portal-job iOS app."
+          },
+          {
+            "/": "/en/shop/*",
+            "comment": "Open English shop detail pages in the portal-job iOS app."
+          }
+        ]
+      }
+    ]
+  }
+}

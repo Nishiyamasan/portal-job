@@ -1,0 +1,62 @@
+{
+  "name": "portal-job",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev -H 0.0.0.0",
+    "build": "next build",
+    "start": "next start -H 0.0.0.0",
+    "lint": "eslint",
+    "test:e2e": "playwright test",
+    "test:e2e:go-public": "playwright test tests/e2e/go-public-read.spec.ts",
+    "test:e2e:go-pages": "playwright test tests/e2e/go-public-pages.spec.ts",
+    "test:e2e:go-protected": "playwright test tests/e2e/go-protected-api.spec.ts",
+    "test:e2e:go-auth": "playwright test tests/e2e/go-authenticated-api.spec.ts",
+    "test:e2e:headed": "playwright test --headed",
+    "test:e2e:ui": "playwright test --ui",
+    "test:e2e:report": "playwright show-report",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
+  },
+  "dependencies": {
+    "@hookform/resolvers": "^5.2.2",
+    "@supabase/supabase-js": "^2.103.0",
+    "lucide-react": "^1.7.0",
+    "next-intl": "^3.26.2",
+    "react": "19.2.4",
+    "react-dom": "19.2.4",
+    "react-hook-form": "^7.72.1",
+    "zod": "^4.3.6"
+  },
+  "devDependencies": {
+    "@cloudflare/next-on-pages": "^1.13.16",
+    "@eslint/eslintrc": "^3.3.5",
+    "@playwright/test": "^1.59.1",
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "15.5.15",
+    "next": "15.5.2",
+    "tailwindcss": "^4",
+    "typescript": "^5",
+    "storybook": "^10.5.0",
+    "@storybook/nextjs-vite": "^10.5.0",
+    "@chromatic-com/storybook": "^5.2.1",
+    "@storybook/addon-vitest": "^10.5.0",
+    "@storybook/addon-a11y": "^10.5.0",
+    "@storybook/addon-docs": "^10.5.0",
+    "@storybook/addon-mcp": "^0.7.0",
+    "vite": "^8.1.4",
+    "eslint-plugin-storybook": "^10.5.0",
+    "vitest": "^4.1.10",
+    "playwright": "^1.61.1",
+    "@vitest/browser-playwright": "^4.1.10",
+    "@vitest/coverage-v8": "^4.1.10"
+  },
+  "overrides": {
+    "postcss": "8.5.10",
+    "@cloudflare/workers-types": "4.20260702.1"
+  }
+}

@@ -1,0 +1,23 @@
+# --- Core Web Stack ---
+fastapi
+uvicorn
+sqlalchemy
+pydantic
+email-validator
+
+pydantic-settings
+python-multipart
+
+# --- Database (PostgreSQL) ---
+sqlalchemy
+psycopg2-binary
+alembic
+
+# --- Auth ---
+PyJWT[crypto]
+python-jose[cryptography]
+passlib[bcrypt]
+
+# --- Utils ---
+python-dotenv
+pywebpush
