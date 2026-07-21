@@ -1,6 +1,6 @@
 services:
   backend:
-    image: ghcr.io/nishiyamasan/ni2hub-backend:${IMAGE_TAG:-latest}
+    image: ghcr.io/nishiyamasan/portal-job-backend:${IMAGE_TAG:-latest}
     container_name: portal-job-backend
     build:
       context: ./backend
@@ -16,8 +16,8 @@ services:
       retries: 5
       start_period: 30s
   go-api:
-    image: ghcr.io/nishiyamasan/ni2hub-go-api:latest
-    container_name: ni2hub-go-api
+    image: ghcr.io/nishiyamasan/portal-job-go-api:latest
+    container_name: portal-job-go-api
     build:
       context: ./go-api
     ports:
