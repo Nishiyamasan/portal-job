@@ -1,0 +1,29 @@
+services:
+  backend:
+    image: ghcr.io/nishiyamasan/portal-job-backend:${IMAGE_TAG:-latest}
+    container_name: portal-job-backend
+    build:
+      context: ./backend
+    ports:
+      - "10000:10000"
+    restart: always
+    env_file:
+      - .env
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:10000/health')"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+  go-api:
+    image: ghcr.io/nishiyamasan/portal-job-go-api:latest
+    container_name: portal-job-go-api
+    build:
+      context: ./go-api
+    ports:
+      - "10001:10001"
+    restart: always
+    env_file:
+      - .env
+    environment:
+      - PORT=10001

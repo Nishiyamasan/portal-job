@@ -1,0 +1,90 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", "Hiragino Sans", "Meiryo", sans-serif;
+
+  /* Warm friendly orange/amber theme colors (OKLCH with H=60-75) */
+  --color-background: oklch(0.99 0.006 70);
+  --color-foreground: oklch(0.20 0.02 70);
+  --color-border: oklch(0.94 0.01 70);
+  
+  --color-brand-50: oklch(0.98 0.015 75);
+  --color-brand-100: oklch(0.95 0.035 75);
+  --color-brand-200: oklch(0.89 0.08 72);
+  --color-brand-500: oklch(0.70 0.19 65);
+  --color-brand-600: oklch(0.62 0.21 60);
+  --color-brand-700: oklch(0.50 0.18 55);
+
+  --animate-float: float 3s ease-in-out infinite;
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+  }
+
+  @keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes zoom-in {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+  }
+
+  @keyframes slide-in-bottom {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+
+  @keyframes slide-in-right {
+    from { transform: translateX(20px); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+  }
+
+  --animate-fade-in: fade-in 0.3s ease-out;
+  --animate-zoom-in: zoom-in 0.3s ease-out;
+  --animate-slide-in-bottom: slide-in-bottom 0.4s ease-out;
+  --animate-slide-in-right: slide-in-right 0.4s ease-out;
+}
+
+:root {
+  --background: oklch(0.99 0.006 70);
+  --foreground: oklch(0.20 0.02 70);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.20 0.02 70);
+  --primary: oklch(0.70 0.19 65);
+  --primary-foreground: oklch(0.99 0.006 75);
+  --border: oklch(0.94 0.01 70);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    @apply antialiased selection:bg-brand-100 selection:text-brand-700;
+    font-feature-settings: "cv11", "ss01";
+  }
+}
+
+@layer utilities {
+  .pb-safe {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  .glass {
+    @apply bg-white/70 backdrop-blur-md border border-white/20;
+  }
+
+  /* Sunset warmth gradient moving away from nightlife/neon-pink colors */
+  .text-gradient {
+    @apply bg-gradient-to-r from-amber-600 via-orange-500 to-amber-500 bg-clip-text text-transparent;
+  }
+
+  .hover-lift {
+    @apply transition-transform duration-300 ease-out hover:-translate-y-1 hover:shadow-lg;
+  }
+}

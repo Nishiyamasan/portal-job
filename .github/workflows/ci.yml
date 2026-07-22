@@ -1,0 +1,67 @@
+name: Continuous Integration
+
+# mainブランチへのプルリクエスト作成時、およびmainブランチへのプッシュ時に自動実行
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  # フロントエンドの検証（Next.js / TypeScript）
+  frontend-check:
+    name: Frontend Quality Check
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install Dependencies
+        run: npm install --legacy-peer-deps
+
+      - name: TypeScript Compile Check
+        run: npx tsc --noEmit
+
+      - name: ESLint Check
+        run: npm run lint
+
+  # バックエンドの検証（Go API / Go Worker）
+  backend-check:
+    name: Backend Quality Check
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.22'
+          cache-dependency-path: |
+            go-api/go.sum
+            go-worker/go.sum
+
+      # Go APIの構文・コンパイルチェック
+      - name: Go API Build Check
+        run: |
+          cd go-api
+          go build -v ./...
+
+      # Go APIの単体テスト実行
+      - name: Go API Run Tests
+        run: |
+          cd go-api
+          go test -v ./...
+
+      # Go Workerの構文・コンパイルチェック
+      - name: Go Worker Build Check
+        run: |
+          cd go-worker
+          go build -v ./...
