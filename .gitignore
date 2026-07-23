@@ -44,7 +44,6 @@ next-env.d.ts
 
 **/__pycache__/
 *.py[cod]
-package-lock.json
 
 *storybook.log
 storybook-static
