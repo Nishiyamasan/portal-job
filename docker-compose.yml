@@ -1,20 +1,24 @@
 services:
-  backend:
-    image: ghcr.io/nishiyamasan/portal-job-backend:${IMAGE_TAG:-latest}
-    container_name: portal-job-backend
-    build:
-      context: ./backend
-    ports:
-      - "10000:10000"
-    restart: always
-    env_file:
-      - .env
-    healthcheck:
-      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:10000/health')"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
-      start_period: 30s
+  # Python REST API (FastAPI) バックエンド
+  # Python版バックエンドを使用する場合は、以下のコメントアウトを解除してください。
+  # backend:
+  #   image: ghcr.io/nishiyamasan/portal-job-backend:${IMAGE_TAG:-latest}
+  #   container_name: portal-job-backend
+  #   build:
+  #     context: ./backend
+  #   ports:
+  #     - "10000:10000"
+  #   restart: always
+  #   env_file:
+  #     - .env
+  #   healthcheck:
+  #     test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:10000/health')"]
+  #     interval: 10s
+  #     timeout: 5s
+  #     retries: 5
+  #     start_period: 30s
+
+  # Go API (現在採用中)
   go-api:
     image: ghcr.io/nishiyamasan/portal-job-go-api:latest
     container_name: portal-job-go-api
