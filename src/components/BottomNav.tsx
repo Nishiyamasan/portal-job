@@ -3,7 +3,7 @@
 import {Link} from '@/i18n/routing';
 import {usePathname} from '@/i18n/routing';
 import {useTranslations} from 'next-intl';
-import {Briefcase, House, LogIn, UserRound, MessageSquare} from 'lucide-react';
+import {Briefcase, Store, LogIn, UserRound, MessageSquare} from 'lucide-react';
 import {type ComponentType} from 'react';
 import {useUnreadMessageCount} from '@/lib/useUnreadMessageCount';
 import {useOwnerAccess} from '@/lib/useOwnerAccess';
@@ -14,7 +14,7 @@ type BottomNavProps = {
 };
 
 type BottomNavItem = {
-  id: 'home' | 'jobs' | 'messages' | 'profile';
+  id: 'shops' | 'jobs' | 'messages' | 'profile';
   href: string;
   label: string;
   icon: ComponentType<{size?: number; strokeWidth?: number}>;
@@ -32,7 +32,7 @@ export default function BottomNav({isLoggedIn}: BottomNavProps) {
   const settingsActivePath = isLoggedIn ? (hasOwnerAccess ? '/owner' : '/profile') : '/signin';
 
   const items: BottomNavItem[] = [
-    {id: 'home', href: '/', label: t('home'), icon: House, exact: true},
+    {id: 'shops', href: '/shop', label: t('shops'), icon: Store},
     {id: 'jobs', href: '/jobs', label: t('jobs'), icon: Briefcase},
     {id: 'messages', href: isLoggedIn ? '/messages' : signInHref, label: t('messages'), icon: MessageSquare, activePath: '/messages'},
     {

@@ -48,8 +48,8 @@
   },
   "Navbar": {
     "home": "ホーム",
-    "shops": "店舗一覧",
-    "jobs": "求人情報",
+    "shops": "店舗",
+    "jobs": "求人",
     "admin": "管理画面",
     "profile": "プロフィール",
     "settings": "マイページ",
