@@ -36,18 +36,18 @@ flowchart LR
 
 | 区分 | ローカル | コンテナ内部 | 本番想定 |
 | --- | --- | --- | --- |
-| Frontend | `http://localhost:3000` | `frontend:3000` | `https://portal-job.example.com` |
-| Go API | `http://localhost:10002` | `http://go-api:10001` | `https://api.portal-job.example.com` |
+| Frontend | `http://localhost:3000` | `frontend:3000` | `https://portal-job.com` |
+| Go API | `http://localhost:10002` | `http://go-api:10001` | `https://api.portal-job.com` |
 | FastAPI | `http://localhost:10000` | `backend:10000` | 原則不使用 |
 | PostgreSQL | `localhost:5434` | `db:5432` | Supabase PostgreSQL |
 
 ローカルの推奨起動:
 
 ```bash
-docker compose -f docker-compose.yml -f docker-compose.local.yml --profile api up -d --build frontend go-api
+docker compose up -d --build
 ```
 
-`docker-compose.local.yml` では `backend` は `fastapi` profile に退避し、通常のフロントは Go API を向く。
+`docker-compose.yml` 内では旧バックエンドである `backend` (FastAPI) はコメントアウトされており、デフォルトで Go API が起動してフロントエンドの接続先となる。
 
 ## 3. API モジュール構成
 
@@ -269,7 +269,7 @@ erDiagram
 
 ## 8. セキュリティ設計
 
-- CORS は `localhost:3000`, `localhost:3001`, `portal-job.example.com`, `www.portal-job.example.com`, `staging.portal-job.example.com`, `*.portal-job.pages.dev` を許可する。リリース後は Pages preview の許可範囲を見直す。
+- CORS は `localhost:3000`, `localhost:3001`, `portal-job.com`, `www.portal-job.com`, `staging.portal-job.com`, `*.portal-job.pages.dev` を許可する。リリース後は Pages preview の許可範囲を見直す。
 - JSON-LD は `serializeJsonLd` で `<`, `>`, `&`, `U+2028`, `U+2029` をエスケープする。
 - Cloudinary secret はフロントに出さず、Go API が短時間署名を発行する。
 - 画像アップロードはクライアント・サーバー双方で MIME/サイズ/URL/public_id/権限を検証する。
@@ -301,15 +301,13 @@ E2E_AUTH_EMAIL=... E2E_AUTH_PASSWORD=... npm run test:e2e:go-auth
 
 ## 11. 運用上の注意
 
-- 本番 VPS では `docker-compose.local.yml` を使わない。ローカルDBを本番に作ってしまう事故につながる。
+- 本番 VPS ではローカル開発用の環境設定やボリュームマウントを誤って使用しないよう注意する。
 - `NEXT_PUBLIC_*` は Next.js build 時に焼き込まれるため、API URL 変更時は frontend rebuild が必要。
-- `api.portal-job.example.com` は Cloudflare Tunnel / DNS の設定と Go API コンテナの死活が両方必要。
+- `api.portal-job.com` は Cloudflare Tunnel / DNS の設定と Go API コンテナの死活が両方必要。
 - FastAPI を完全削除する前に、1リリースサイクルは rollback 用コードとして残す。
 
 ## 12. 残課題
 
-- チャット/問い合わせ/画像アップロードのレートリミット。
+- チャット通知/画像アップロードのレートリミット。
 - Cloudinary 旧ファイルの物理削除。
-- `media_assets` active の DB 部分一意制約。
-- メッセージ会話詳細のページング。
 - 本番監視、ログ相関 ID、Cloudflare Tunnel の自動起動。
