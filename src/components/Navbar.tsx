@@ -45,9 +45,9 @@ export default function Navbar() {
           </div>
 
           <div className="hidden md:ml-6 md:flex md:space-x-8 items-center h-full">
-            <Link href="/" className={navLinkClass('/')}>
-              {t('home')}
-              <span className={`absolute bottom-0 left-0 h-0.5 bg-brand-500 transition-all duration-300 ${isActive('/') ? 'w-full' : 'w-0 group-hover:w-full'}`} />
+            <Link href="/shop" className={navLinkClass('/shop')}>
+              {t('shops')}
+              <span className={`absolute bottom-0 left-0 h-0.5 bg-brand-500 transition-all duration-300 ${isActive('/shop') ? 'w-full' : 'w-0 group-hover:w-full'}`} />
             </Link>
             <Link href="/jobs" className={navLinkClass('/jobs')}>
               {t('jobs')}
