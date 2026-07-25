@@ -14,7 +14,7 @@ import FavoriteButton from '@/components/FavoriteButton';
 
 export const runtime = 'edge';
 
-const CATEGORIES = ['shokudo', 'yoshoku', 'washoku', 'restaurant', 'cafe'];
+const CATEGORIES = ['shokudo', 'restaurant', 'izakaya', 'cafe', 'office', 'apparel', 'zakka'];
 const PAGE_SIZE = 20;
 
 function ShopListingContent() {
@@ -154,7 +154,7 @@ function ShopListingContent() {
                   <option value="">{t('allCategories')}</option>
                   {CATEGORIES.map(cat => (
                     <option key={cat} value={cat}>
-                      {cat}
+                      {t(`categories.${cat}`)}
                     </option>
                   ))}
                 </select>
