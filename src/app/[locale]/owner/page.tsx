@@ -120,12 +120,7 @@ export default function OwnerDashboardPage() {
                 >
                   {t('members')}
                 </Link>
-                <Link
-                   href={`/owner/shops/${shop.id}/shifts`}
-                   className="text-center py-2 px-3 bg-white border border-gray-200 rounded text-sm font-semibold text-gray-700 hover:bg-gray-100 transition-colors"
-                >
-                  Shifts
-                </Link>
+
               </div>
             </div>
           ))}

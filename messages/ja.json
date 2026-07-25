@@ -405,7 +405,16 @@
     "instagramAccountId": "Instagram ユーザーID",
     "submit": "登録する",
     "registerSuccess": "店舗を登録しました",
-    "registerError": "店舗登録に失敗しました"
+    "registerError": "店舗登録に失敗しました",
+    "categories": {
+      "shokudo": "食堂",
+      "restaurant": "レストラン",
+      "izakaya": "居酒屋",
+      "cafe": "カフェ",
+      "office": "事務所",
+      "apparel": "アパレル",
+      "zakka": "雑貨"
+    }
   },
   "ShopListing": {
     "title": "店舗を探す",
@@ -414,6 +423,15 @@
     "searchPlaceholder": "店名・特徴など...",
     "category": "カテゴリ",
     "allCategories": "すべて",
+    "categories": {
+      "shokudo": "食堂",
+      "restaurant": "レストラン",
+      "izakaya": "居酒屋",
+      "cafe": "カフェ",
+      "office": "事務所",
+      "apparel": "アパレル",
+      "zakka": "雑貨"
+    },
     "tags": "こだわり条件",
     "viewDetail": "詳細を見る",
     "clearAll": "フィルターをリセット",

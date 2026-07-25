@@ -406,7 +406,16 @@
     "instagramAccountId": "Instagram ID",
     "submit": "Register",
     "registerSuccess": "Shop registered successfully",
-    "registerError": "Failed to register shop"
+    "registerError": "Failed to register shop",
+    "categories": {
+      "shokudo": "Diner (Shokudo)",
+      "restaurant": "Restaurant",
+      "izakaya": "Izakaya (Pub)",
+      "cafe": "Cafe",
+      "office": "Office",
+      "apparel": "Apparel/Fashion",
+      "zakka": "Miscellaneous Goods"
+    }
   },
   "ShopListing": {
     "title": "Explore Shops",
@@ -415,6 +424,15 @@
     "searchPlaceholder": "Name, features...",
     "category": "Category",
     "allCategories": "All",
+    "categories": {
+      "shokudo": "Diner (Shokudo)",
+      "restaurant": "Restaurant",
+      "izakaya": "Izakaya (Pub)",
+      "cafe": "Cafe",
+      "office": "Office",
+      "apparel": "Apparel/Fashion",
+      "zakka": "Miscellaneous Goods"
+    },
     "tags": "Tags",
     "viewDetail": "View detail",
     "clearAll": "Clear All",

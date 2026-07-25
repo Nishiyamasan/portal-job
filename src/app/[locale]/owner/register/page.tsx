@@ -113,11 +113,13 @@ export default function RegisterShopPage() {
             <label className="mb-2 block text-sm font-semibold text-gray-700">{t('category')}</label>
             <select {...register('category')} className="w-full rounded-lg border border-gray-300 bg-white p-2.5">
               <option value="">-</option>
-              <option value="restaurant">restaurant</option>
-              <option value="restaurant">restaurant</option>
-              <option value="restaurant">restaurant</option>
-              <option value="club">club</option>
-              <option value="snack">snack</option>
+              <option value="shokudo">{t('categories.shokudo')}</option>
+              <option value="restaurant">{t('categories.restaurant')}</option>
+              <option value="izakaya">{t('categories.izakaya')}</option>
+              <option value="cafe">{t('categories.cafe')}</option>
+              <option value="office">{t('categories.office')}</option>
+              <option value="apparel">{t('categories.apparel')}</option>
+              <option value="zakka">{t('categories.zakka')}</option>
             </select>
           </div>
 
