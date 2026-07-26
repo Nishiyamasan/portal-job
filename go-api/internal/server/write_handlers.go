@@ -109,7 +109,7 @@ WITH inserted AS (
     application_deadline, published_at, expires_at
   )
   VALUES (
-    $1, $2, $3, $4, $5, $6,
+    $1::uuid, $2, $3, $4, $5, $6,
     NULLIF($7, '')::timestamptz,
     NULLIF($8, '')::timestamptz,
     COALESCE(NULLIF($9, '')::timestamptz, NULLIF($8, '')::timestamptz + INTERVAL '4 weeks')
@@ -176,7 +176,7 @@ WITH updated AS (
       published_at = NULLIF($8, '')::timestamptz,
       expires_at = COALESCE(NULLIF($9, '')::timestamptz, NULLIF($8, '')::timestamptz + INTERVAL '4 weeks'),
       updated_at = NOW()
-  WHERE id = $1
+  WHERE id = $1::uuid
   RETURNING *
 )
 SELECT `+jobJSON("updated")+` FROM updated`,
