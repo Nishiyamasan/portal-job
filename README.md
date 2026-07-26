@@ -12,10 +12,12 @@
 
 ---
 
-## デモ環境 (動作確認はこちら)
+## デモ環境
 
-**デモURL**: [https://portal-job-frontend.pages.dev/ja](https://portal-job-frontend.pages.dev/ja)
+**デモURL**: [https://portal-job-frontend.pages.dev/ja](https://portal-job-frontend.pages.dev/ja)  
 
+> 初回アクセス時のご注意  
+> バックエンドAPI（Render）のコールドスタート仕様により、初回アクセス時（ページの読み込みやログイン時など）に**30秒〜1分ほど**時間がかかる場合がございます。一度起動すれば、以降はスムーズに動作いたします。
 ---
 
 ## 課題解決のための開発背景
