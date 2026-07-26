@@ -105,14 +105,15 @@ func (s *Server) handleCreateJob(w http.ResponseWriter, r *http.Request, user cu
 	if err := s.db.QueryRow(ctx, `
 WITH inserted AS (
   INSERT INTO job_posts (
-    shop_id, title, description, employment_type, location, status,
-    application_deadline, published_at, expires_at
+    id, shop_id, title, description, employment_type, location, status,
+    application_deadline, published_at, expires_at, created_at, updated_at
   )
   VALUES (
-    $1::uuid, $2, $3, $4, $5, $6,
+    gen_random_uuid(), $1::uuid, $2, $3, $4, $5, $6,
     NULLIF($7, '')::timestamptz,
     NULLIF($8, '')::timestamptz,
-    COALESCE(NULLIF($9, '')::timestamptz, NULLIF($8, '')::timestamptz + INTERVAL '4 weeks')
+    COALESCE(NULLIF($9, '')::timestamptz, NULLIF($8, '')::timestamptz + INTERVAL '4 weeks'),
+    NOW(), NOW()
   )
   RETURNING *
 )
