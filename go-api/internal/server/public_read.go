@@ -186,8 +186,33 @@ func (s *Server) handleListShops(w http.ResponseWriter, r *http.Request) {
 	args := []any{}
 	where := []string{"s.is_approved = TRUE"}
 	if category != "" {
-		args = append(args, category)
-		where = append(where, "s.category = $"+strconv.Itoa(len(args)))
+		lowerCat := strings.ToLower(category)
+		var candidates []string
+		switch lowerCat {
+		case "shokudo":
+			candidates = []string{"shokudo", "食堂", "diner"}
+		case "restaurant":
+			candidates = []string{"restaurant", "レストラン"}
+		case "izakaya":
+			candidates = []string{"izakaya", "居酒屋"}
+		case "cafe":
+			candidates = []string{"cafe", "カフェ"}
+		case "office":
+			candidates = []string{"office", "オフィス"}
+		case "apparel":
+			candidates = []string{"apparel", "アパレル"}
+		case "zakka":
+			candidates = []string{"zakka", "雑貨"}
+		default:
+			candidates = []string{lowerCat}
+		}
+
+		var placeholders []string
+		for _, cand := range candidates {
+			args = append(args, cand)
+			placeholders = append(placeholders, "$"+strconv.Itoa(len(args)))
+		}
+		where = append(where, "LOWER(s.category) IN ("+strings.Join(placeholders, ", ")+")")
 	}
 	for _, tag := range tags {
 		args = append(args, "%"+tag+"%")
