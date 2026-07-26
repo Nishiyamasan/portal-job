@@ -201,7 +201,7 @@ func messageJSON(alias string) string {
   'shop_id', ` + alias + `.shop_id,
   'content', ` + alias + `.content,
   'is_read', COALESCE(` + alias + `.is_read, FALSE),
-  'created_at', ` + alias + `.created_at,
+  'created_at', ` + alias + `.created_at::timestamptz,
   'sender', CASE WHEN sender_profile.id IS NULL THEN NULL ELSE ` + profileJSON("sender_profile") + ` END,
   'receiver', CASE WHEN receiver_profile.id IS NULL THEN NULL ELSE ` + profileJSON("receiver_profile") + ` END,
   'shop', CASE WHEN s.id IS NULL THEN NULL ELSE ` + shopJSON("s") + ` END

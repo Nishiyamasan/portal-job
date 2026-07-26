@@ -419,11 +419,11 @@ func jobJSON(alias string) string {
   'employment_type', ` + alias + `.employment_type,
   'location', ` + alias + `.location,
   'status', ` + alias + `.status,
-  'application_deadline', ` + alias + `.application_deadline,
-  'published_at', ` + alias + `.published_at,
-  'expires_at', ` + alias + `.expires_at,
-  'created_at', ` + alias + `.created_at,
-  'updated_at', ` + alias + `.updated_at,
+  'application_deadline', ` + alias + `.application_deadline::timestamptz,
+  'published_at', ` + alias + `.published_at::timestamptz,
+  'expires_at', ` + alias + `.expires_at::timestamptz,
+  'created_at', ` + alias + `.created_at::timestamptz,
+  'updated_at', ` + alias + `.updated_at::timestamptz,
   'media_assets', COALESCE((
     SELECT json_agg(` + mediaAssetJSON("ma") + ` ORDER BY ma.created_at DESC NULLS LAST)
     FROM media_assets ma
