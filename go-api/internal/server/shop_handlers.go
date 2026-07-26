@@ -112,8 +112,8 @@ WITH inserted AS (
     x_account_id, instagram_account_id, updated_at
   )
   VALUES (
-    gen_random_uuid(), $1, NULLIF($2, ''), $3, $4, $5, $6,
-    $7::text[], FALSE, $8, $9, $10, $11, NOW()
+    gen_random_uuid(), $1, NULLIF($2, ''), $3, $4, $5, $6::text[],
+    $7::uuid, FALSE, $8, $9, $10, $11, NOW()
   )
   RETURNING *
 )
