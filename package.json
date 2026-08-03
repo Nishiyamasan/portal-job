@@ -22,6 +22,7 @@
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
     "@supabase/supabase-js": "^2.103.0",
+    "@vercel/build-utils": "^13.34.0",
     "@vercel/next": "^4.20.4",
     "lucide-react": "^1.7.0",
     "next-intl": "^3.26.2",
@@ -60,6 +61,7 @@
   "overrides": {
     "postcss": "8.5.10",
     "@cloudflare/workers-types": "4.20260702.1",
+    "@vercel/build-utils": "$@vercel/build-utils",
     "@vercel/next": "$@vercel/next"
   }
 }
