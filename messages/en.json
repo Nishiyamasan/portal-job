@@ -324,7 +324,9 @@
     "editShop": "Edit Shop",
     "manageJobs": "Manage Jobs",
     "manageJobsLocked": "Job management is available after shop approval.",
-    "members": "Staff Management"
+    "members": "Staff Management",
+    "shifts": "Manage Shifts",
+    "shiftsLocked": "Shift management is available after shop approval."
   },
   "OwnerEditShop": {
     "title": "Edit Shop Info",

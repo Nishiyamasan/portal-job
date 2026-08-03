@@ -327,13 +327,23 @@ export default function ProfilePage() {
                       </div>
                     </div>
                   </div>
-                  <button
-                    onClick={() => setLeaveShopModal({ shopId: membership.shop_id })}
-                    disabled={isSubmitting}
-                    className="text-xs font-bold text-red-600 hover:underline disabled:text-gray-400 disabled:no-underline"
-                  >
-                    {t('leave')}
-                  </button>
+                  <div className="flex items-center gap-3">
+                    {membership.status === 'approved' && (
+                      <Link
+                        href="/profile/shifts"
+                        className="text-xs font-bold text-blue-600 hover:underline mr-2"
+                      >
+                        {t('manageShifts')}
+                      </Link>
+                    )}
+                    <button
+                      onClick={() => setLeaveShopModal({ shopId: membership.shop_id })}
+                      disabled={isSubmitting}
+                      className="text-xs font-bold text-red-600 hover:underline disabled:text-gray-400 disabled:no-underline"
+                    >
+                      {t('leave')}
+                    </button>
+                  </div>
                 </div>
               ))}
             </div>

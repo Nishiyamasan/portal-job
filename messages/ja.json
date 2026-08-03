@@ -323,7 +323,9 @@
     "editShop": "基本情報の編集",
     "manageJobs": "求人の管理",
     "manageJobsLocked": "求人の管理は店舗承認後に利用できます",
-    "members": "スタッフ管理"
+    "members": "スタッフ管理",
+    "shifts": "シフト管理",
+    "shiftsLocked": "シフトの管理は店舗承認後に利用できます"
   },
   "OwnerEditShop": {
     "title": "店舗情報の編集",

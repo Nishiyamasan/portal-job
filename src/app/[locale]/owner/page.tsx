@@ -92,7 +92,7 @@ export default function OwnerDashboardPage() {
                    </span>
                 </div>
               </div>
-              <div className="bg-gray-50 border-t p-4 grid grid-cols-3 gap-2">
+              <div className="bg-gray-50 border-t p-4 grid grid-cols-2 gap-2">
                 <Link
                   href={`/owner/shops/${shop.id}/edit`}
                   className="text-center py-2 px-3 bg-white border border-gray-200 rounded text-sm font-semibold text-gray-700 hover:bg-gray-100 transition-colors"
@@ -120,7 +120,21 @@ export default function OwnerDashboardPage() {
                 >
                   {t('members')}
                 </Link>
-
+                {shop.is_approved ? (
+                  <Link
+                    href={`/owner/shops/${shop.id}/shifts`}
+                    className="text-center py-2 px-3 bg-white border border-gray-200 rounded text-sm font-semibold text-gray-700 hover:bg-gray-100 transition-colors"
+                  >
+                    {t('shifts')}
+                  </Link>
+                ) : (
+                  <span
+                    className="text-center py-2 px-3 bg-gray-100 border border-gray-200 rounded text-sm font-semibold text-gray-400 cursor-not-allowed"
+                    title={t('shiftsLocked')}
+                  >
+                    {t('shifts')}
+                  </span>
+                )}
               </div>
             </div>
           ))}
