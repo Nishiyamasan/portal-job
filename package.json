@@ -43,6 +43,7 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "@vercel/next": "^4.20.4",
     "@vitest/browser-playwright": "^4.1.10",
     "@vitest/coverage-v8": "^4.1.10",
     "eslint": "^9",
@@ -58,6 +59,7 @@
   },
   "overrides": {
     "postcss": "8.5.10",
-    "@cloudflare/workers-types": "4.20260702.1"
+    "@cloudflare/workers-types": "4.20260702.1",
+    "@vercel/next": "$@vercel/next"
   }
 }
